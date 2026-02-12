@@ -6,9 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
+*{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
   background: url("içerikler/bg1.png") center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -18,11 +24,17 @@ body {
 
 .box {
   background: rgba(16, 142, 151, 0.9);
-  padding: 30px;
+  padding: 25px;
   width: 90%;
-  max-width: 320px;
+  max-width: 350px;
   text-align: center;
   border: 1px solid #333;
+  border-radius: 12px;
+  word-wrap: break-word;
+}
+
+p{
+  font-size: clamp(14px,4vw,18px);
 }
 
 input, button {
@@ -32,13 +44,15 @@ input, button {
   background: #111111;
   border: 1px solid #333;
   color: #eee;
+  font-size: 16px;
 }
 
 .error {
   margin-top: 12px;
-  color: rgb(255, 255, 255);
-  font-size: 12px;
+  color: white;
+  font-size: 13px;
   opacity: 0;
+  transition: 0.3s;
 }
 
 .shake {
@@ -52,6 +66,7 @@ input, button {
   75%{transform:translateX(-6px)}
   100%{transform:translateX(0)}
 }
+
 </style>
 </head>
 
@@ -59,30 +74,45 @@ input, button {
 
 <div class="box" id="box">
   <p>Hadi bakalım bunu bulabilecek misin❤️</p>
+
   <input type="password" id="pass" placeholder="Şifre">
+
   <button onclick="kontrol()">Devam</button>
+
   <div class="error" id="err">Sende en çok sevdiğim şey❤️</div>
 </div>
 
 <script>
+
 const dogru = "güven";
 
-function kontrol() {
-  const val = pass.value;
+const pass = document.getElementById("pass");
+const box = document.getElementById("box");
+const err = document.getElementById("err");
 
-  if (val === dogru) {
-    localStorage.getItem("adim1", "ok");
+function kontrol() {
+
+  if (pass.value === dogru) {
+
+    localStorage.setItem("adim1", "ok"); // ✅ DÜZELTİLDİ
+
     window.location.href = "mesaj.html";
-  } 
-  else {
+
+  } else {
+
     box.classList.remove("shake");
     void box.offsetWidth;
     box.classList.add("shake");
 
     err.style.opacity = 1;
-    setTimeout(()=>err.style.opacity=0,2000);
+
+    setTimeout(() => {
+      err.style.opacity = 0;
+    }, 2000);
+
   }
 }
+
 </script>
 
 </body>
