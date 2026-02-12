@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Mesaj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: url("içerikler/yıldızlar1.png") center/cover no-repeat;
+  color: #ff0000;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.box {
+  max-width: 600px;
+  padding: 30px;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.6); /* 👈 şeffaf siyah kutu */
+  border-radius: 12px;          /* 👈 köşeler yumuşak */
+}
+
+
+button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #1c1c1c;
+  border: 1px solid #333;
+  color: #eee;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="içerikler/music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+  <div id="ilk">
+    <p>Buraya geldiğine göre gizem çözmekte baya iyi olsan gerek.Sıradaki gizemi çözerken seni şarkımızla baş başa bırakayım.</p>
+    <button onclick="baslat()">Mesajı aç</button>
+  </div>
+
+  <div id="mesaj" style="display:none;">
+    <p>
+      Sen gizem çözmeyi seviyorum diyince bunu planladım.Keşke sana bunu elden verebilseydim ama elden verseydim herhalde evde annen görürdü ve sevgilin olduğunu anlardı. 
+      Gerçi zaten var diye düşünüyorlar, sadece ben yokum içinde ama olsun. Zaten sende henüz hediyeye ulaşabilmiş ddeğilsin.Umarım beğenirsin.Önceki metin ve şifre hikeyemizin başlangıcıyla ilgiliydi. 
+      Şimdi biraz daha farklı şeylerden konuşmak istiyorum.Biz birlikte olduktan ve daha fazla vakit geçirdikten sonra seni daha yakından tanımaya başladım ve hep endişeli birisi olduğunuu fark ettim. 
+      Sürekli kendin hakkında bir şeyleri düşünüyor ve bir şeylerden korkuyordun ve bu yüzden seni mutlu etmek,kendin hakkındaki çekincelerini atman için her şeyi yaptım bunu sende biliyorsun bunlardan çok bahsetmeye gerek yok. 
+      Ama fark etmediğin bir şey vardı.Üstelik hala farkında değilsin bence.Bu hayat için ya da benim için mükemmel birisi olman gerekmiyor.Ben seni güzel tatlı yaptığın için ya da akıcı ingilizce konuştuğun için sevmiyorum.
+      Seni seviyorum çünkü o sensin.Anlayışlısın,kibarsın,mütevazisin,akıllısın,sadıksın... Kısacası bunların hepsi ve daha fazlası sensin ve ben seni seviyorum. 
+      Sen olmadan önce hayatım çok sıkıcıydı.Hayatımın çok bir anlamı yoktu çünkü hedeflerim haricinde hiçbir şeyim yoktu.Yorulduğumda bana sarıllıp motive edecek,dertlerimi çözmese bile dinleyip beni rahatlatacak,yanında çekinmeden eğlenebileceğim birisi yoktu. 
+      Eğlenerek yaptığım şeyleri bile daha fazla çalışabiileyim diye yapıyordum.Her yerde severek anlattığım spor bile amaçlarım içindi.Oysa senin yanına geldiğim anlar gerçekten yapmak istediğim anlardan ve hiçbir saniyesinden pişman değilim. 
+      Sen bu hayatta severek yanında bulunduğum tek kişisin.Bazen kendini sorguluyorsun "acaba çocuğun işlerine engel oluyor muyum ya da zaten yorgunken onu daha çok yoruyor muyum" diye. 
+      Hepsi gereksiz korkular çünkü seninle geçirdiğim her saniye bu hayatı daha yaşanılabilir kılıyor.Seni çok çok çok seviyorum.Sen benim duamsın.Her namaz kıldığımda ettiğim,güvenebileceğim,yanında bulunmaktan zevk aldığım hayat arkadaşımsın. 
+      Hiç kimsein bilmediği şeyleri bilen kişisin.Çaba harcamaktan çekinmediğim kişisin.Değil mutlu olman, sadece yüzünün bir kere güldüğünü görmek için her şeyi yaparım.Belki sirke beraber gireriz belli mi olur? 
+      Beraber gerçekleştiricek çok fazla hayal var.Hiçbirisinin havada kalmasını istemiyorum.Seninle beraber insanlara anlatmaya değicek,nesillerin hatırlamak isteyceği bir hayat yaşamak istiyorum. 
+      Çünkü sen beni mutlu bir adam yaptın.Sana çok fazla borçlu hissediyorum ve elimden geleni yapıyorum umarım çok mutlusundur benimle gerçirdiğin zamankar için. 
+      Bak senin için hayatımda ilk defa kod yazdım ve buraya bir şifre koydum.Şifrenin her harfi küçük ve tek kelime.Bana verdiğin en güzel hediyeyle ilgili❤️
+    </p>
+
+    <button onclick="devam()">Devam</button>
+  </div>
+</div>
+
+<script>
+if (localStorage.getItem("girisOnay") !== "evet") {
+}
+
+const music = document.getElementById("music");
+
+function baslat() {
+  music.play(); // 🎵 ŞİFRE SAYFASIYLA AYNI ŞEKİLDE
+  document.getElementById("ilk").style.display = "none";
+  document.getElementById("mesaj").style.display = "block";
+}
+
+function devam() {
+  localStorage.setItem("mesajOkundu", "evet");
+  window.location.href = "giriş.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Giriş</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: url("içerikler/bg1.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+}
+
+.box {
+  background: rgba(16, 142, 151, 0.9);
+  padding: 30px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+input, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #111111;
+  border: 1px solid #333;
+  color: #eee;
+}
+
+.error {
+  margin-top: 12px;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  opacity: 0;
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+  <p>Hadi bakalım bunu bulabilecek misin❤️</p>
+  <input type="password" id="pass" placeholder="Şifre">
+  <button onclick="kontrol()">Devam</button>
+  <div class="error" id="err">Sende en çok sevdiğim şey❤️</div>
+</div>
+
+<script>
+const dogru = "güven";
+
+function kontrol() {
+  const val = pass.value;
+
+  if (val === dogru) {
+    localStorage.getItem("adim1", "ok");
+    window.location.href = "mesaj.html";
+  } 
+  else {
+    box.classList.remove("shake");
+    void box.offsetWidth;
+    box.classList.add("shake");
+
+    err.style.opacity = 1;
+    setTimeout(()=>err.style.opacity=0,2000);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Şifre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: url("içerikler/kış.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial;
+}
+
+.box {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  text-align: center;
+  color: #eee;
+  width: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  background: #000;
+  border: 1px solid #444;
+  color: #eee;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background: #1c1c1c;
+  border: 1px solid #333;
+  color: #eee;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.shake {
+  animation: shake .3s;
+}
+
+@keyframes shake {
+  0% {transform:translateX(0)}
+  25% {transform:translateX(-5px)}
+  50% {transform:translateX(5px)}
+  75% {transform:translateX(-5px)}
+  100% {transform:translateX(0)}
+}
+
+/* BONUS KONFETİ */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: red;
+  top: -10px;
+  animation: fall 1.5s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(300px) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+  <p>Hediyene kalan son şifre</p>
+  <input id="pass" type="password" placeholder="Şifre">
+  <button onclick="kontrol()">Devam</button>
+  <button onclick="geri()">← Geri dön</button>
+  <div class="error" id="err">Bu bir duygu</div>
+</div>
+
+<script>
+if (localStorage.getItem("mesajOkundu") !== "evet") {
+  window.location.href = "index.html";
+}
+
+const dogru = "mutluluk";
+const box = document.getElementById("box");
+const err = document.getElementById("err");
+const pass = document.getElementById("pass");
+
+function kontrol() {
+
+  if (pass.value === dogru) {
+
+    // BONUS KONFETİ
+    for(let i=0;i<40;i++){
+      const conf = document.createElement("div");
+      conf.className = "confetti";
+      conf.style.left = Math.random()*260 + "px";
+      conf.style.background = `hsl(${Math.random()*360},100%,50%)`;
+      conf.style.animationDuration = (Math.random()+1)+"s";
+      box.appendChild(conf);
+    }
+
+    // 1 saniye sonra final sayfasına geç
+    setTimeout(()=>{
+      window.location.href = "final.html";
+    },1000);
+
+  } else {
+
+    box.classList.remove("shake");
+    void box.offsetWidth;
+    box.classList.add("shake");
+
+    err.style.opacity = 1;
+    setTimeout(()=>err.style.opacity=0,2000);
+  }
+}
+
+function geri() {
+  window.location.href = "mesaj.html";
+}
+</script>
+
+</body>
+</html>

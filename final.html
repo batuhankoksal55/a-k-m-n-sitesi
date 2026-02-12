@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Günün Mesajı</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url("içerikler/güll.png"); /* 🌹 GÜLLÜ GÖRSEL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.box {
+  max-width: 600px;
+  padding: 30px;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+}
+
+
+button {
+  margin-top: 25px;
+  padding: 12px 24px;
+  background: #1c1c1c;
+  border: 1px solid #333;
+  color: #eee;
+  cursor: pointer;
+}
+
+#mesaj {
+  margin-top: 25px;
+  line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <p>Sana gül yapraklı bir kavanoz vermek isterdim ama böylesi daha iyi olabilir diye düşündüm.Her an bir şey demeden üzelebiliyor ve bazen bana diyemiyorsun.Buraya 365 tane mesaj koydum.Her gün bir tanesine bakıp mutlu ol diye 365 tane koydum.Umarım hiç üzgün olmazsın.❤️ </p>
+  <button onclick="mesajVer()">Mutluluk için tıkla❤️</button>
+  <div id="mesaj"></div>
+</div>
+
+<script>
+const tumMesajlar = [
+ "Seninle olmak, hayatın acele etmeden güzel olabileceğini öğretti.",
+"Bizim hikâyemiz yüksek sesle değil, kalpten anlatılan bir masal gibi.",
+"Yanında susabilmek, konuşabildiğim en uzun cümle aslında.",
+"Biz birbirimizi tamamlamıyoruz, biz birbirimizi büyütüyoruz.",
+"Hayat bana birçok yol gösterdi ama ben yönümü sende buldum.",
+"Seninle geçen zaman, saatten değil kalpten ölçülüyor.",
+"Sevgi bazen bir bakışta saklanır, biz o bakışı birbirimizde bulduk.",
+"Biz tartışsak bile aynı cümlenin içinde kalmayı başaran iki insanız.",
+"Sen hayatıma gelmedin, hayatımın anlamını değiştirdin.",
+"Ben seni sevmeyi öğrenmedim, seninle severek yaşamayı öğrendim.",
+"Birlikte yürüdüğümüz yolun nereye çıktığı değil, birlikte yürümemiz değerli.",
+"Sen benim huzurla kurduğum en güzel hayalsin.",
+"Kalbim bazen yoruluyor ama senin yanında dinlenmeyi biliyor.",
+"Biz birbirimizi bulmadık, sanki hep birbirimizi bekledik.",
+"Sen yanımdayken dünya küçülüyor, kalbim büyüyor.",
+"Sevgi bazen büyük sözler değildir, seninle paylaşılan küçük anılardır.",
+"Seninle konuşurken zaman değil, anlam ilerliyor.",
+"Bizim sevgimiz gösterişli değil, derinliğiyle güçlü.",
+"Hayatın karmaşasında sen benim sade kalan tek gerçeğimsin.",
+"Seninle yaşanan bir gün, sensiz geçen yüz günden daha dolu.",
+"Biz birbirimizin eksiklerini kapatmadık, birbirimize alan açtık.",
+"Senin yanında kendim olabilmek, sana duyduğum sevginin en saf hali.",
+"Sen benim en güzel alışkanlığımsın.",
+"Bazı insanlar hayatı değiştirir, sen benim hayatı anlamamı sağladın.",
+"Bizim sevgimiz hızlı değil ama sağlam ilerleyen bir yolculuk.",
+"Seninle her şey daha net, çünkü kalbim senin yanında bulanıklaşmıyor.",
+"Sen benim kalbimin sakin limanısın.",
+"Birlikte susabilmek, birlikte konuşmaktan daha kıymetli bazen.",
+"Biz birbirimizi kurtarmadık, birbirimize eşlik ettik.",
+"Sen hayatımın en doğru tesadüfüsün.",
+"Seninle gelecek planlamak, hayal kurmaktan daha gerçek hissettiriyor.",
+"Kalbim seni sevdiğinde korkmadı, çünkü kendini evinde hissetti.",
+"Bizim sevgimiz gösterilmeye değil, yaşanmaya değer.",
+"Seninle tanışmadan önce sevgi kelimesinin anlamını biliyordum, şimdi hissediyorum.",
+"Birlikte geçirdiğimiz anlar, zamanın en güzel hatıraları oluyor.",
+"Sen yanımdayken hayat karmaşık değil, sadece gerçek.",
+"Bizim sevgimiz kusursuz değil ama çok gerçek.",
+"Sen benim en sakin fırtınamsın.",
+"Seninle konuşurken kelimeler değil duygular anlatıyor.",
+"Bizim hikâyemiz mutlu sonla değil, birlikte yazılan her günle güzel.",
+"Sen benim kalbime öğretilmiş en güzel şiirsin.",
+"Hayat bazen zor ama seninle daha anlamlı.",
+"Sen benim en uzun cümlem, en kısa huzurumsun.",
+"Biz birbirimizi değiştirmedik, birbirimize iyi geldik.",
+"Seninle kurduğum hayaller, gerçek olmadan bile güzel.",
+"Sen benim kalbimin en güvenli sırrısın.",
+"Birlikte büyüyebildiğimiz için seviyorum seni.",
+"Seninle hayat daha kolay değil ama daha değerli.",
+"Sen benim en doğru yanlışım değil, en doğru seçimimsin.",
+"Bizim sevgimiz anlatılmıyor, yaşanıyor.",
+"Seninle her şey daha az korkutucu.",
+"Kalbim seni seçtiğinde mantığım itiraz etmedi.",
+"Sen benim en güzel ihtimalimsin.",
+"Bizim hikâyemiz hızlı başlamadı ama sağlam ilerliyor.",
+"Sen benim kalbimde yankılanan en güzel sessizliksin.",
+"Seninle aynı gökyüzüne bakmak bile özel.",
+"Biz birbirimizi bulmadık, birbirimize vardık.",
+"Sen benim en sakin mutluluğumsun.",
+"Seninle geçen zaman, hayatın bana verdiği en güzel hediye.",
+"Bizim sevgimiz gösterişsiz ama derin.",
+"Sen benim kalbimin en gerçek cümlesisin.",
+"Seninle hayat daha anlamlı çünkü sen benim anlamımsın."
+];
+
+function mesajVer() {
+  const alan = document.getElementById("mesaj");
+
+  const bugun = new Date().toDateString();
+  let verilenler = JSON.parse(localStorage.getItem("verilenMesajlar")) || [];
+  let sonGun = localStorage.getItem("sonMesajGunu");
+
+  // ❌ aynı gün tekrar basıldıysa → HİÇBİR ŞEY YAPMA
+  if (sonGun === bugun) {
+    alan.innerText = "Bugün için mesajını zaten aldın.Eğer mutlu olmak istiyorsan benimle vakit geçirmekte bir seçenek.";
+    return;
+  }
+
+  // ❌ mesaj kalmadıysa
+  if (verilenler.length >= tumMesajlar.length) {
+    alan.innerText = "Tüm mesajlar tamamlandı.";
+    return;
+  }
+
+  // 🎲 daha önce verilmemiş mesajlar
+  const kalanIndexler = [];
+  for (let i = 0; i < tumMesajlar.length; i++) {
+    if (!verilenler.includes(i)) {
+      kalanIndexler.push(i);
+    }
+  }
+
+  const secilenIndex =
+    kalanIndexler[Math.floor(Math.random() * kalanIndexler.length)];
+
+  const secilenMesaj = tumMesajlar[secilenIndex];
+
+  // 💾 KAYIT
+  verilenler.push(secilenIndex);
+  localStorage.setItem("verilenMesajlar", JSON.stringify(verilenler));
+  localStorage.setItem("sonMesajGunu", bugun);
+
+  alan.innerText = secilenMesaj;
+}
+</script>
+
+
+</body>
+</html>
